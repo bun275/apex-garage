@@ -104,6 +104,16 @@ nav a:hover{color:var(--text)}
 .steps h3{font-size:28px;margin-bottom:4px}
 .steps p{color:var(--mut);font-size:15.5px}
 
+/* ilustrații */
+.car{position:absolute;right:-3%;bottom:7%;width:min(780px,64vw);height:auto;pointer-events:none;animation:drive 1.5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes drive{from{transform:translateX(90px);opacity:0}to{transform:none;opacity:1}}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pi{display:block;width:100%;height:96px;margin:0 0 22px;border-radius:6px}
+.si{display:block;width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:8px}
+@media (max-width:980px){.car{width:92vw;right:-6%;bottom:3%;opacity:.3!important;animation:none}}
+@media (prefers-reduced-motion:reduce){.wheel,.car{animation:none}}
+
 /* faq */
 .faq{max-width:820px;margin-top:40px}
 details{border-bottom:1px solid var(--line);padding:4px 0}
@@ -169,6 +179,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <main id="top">
 <section class="hero">
   <div class="sweep" aria-hidden="true"></div>
+  <svg class="car" viewBox="0 0 700 230" aria-hidden="true">
+    <ellipse cx="350" cy="208" rx="330" ry="9" fill="#000" opacity=".5"/>
+    <path d="M24 160C24 142 44 136 84 132L168 124C198 94 258 66 340 64C422 62 476 86 516 114L604 124C652 128 676 142 676 160V172H24Z" fill="#1a1a1e" stroke="#3a3a42" stroke-width="2"/>
+    <path d="M214 118C242 92 292 76 340 76C390 76 432 94 466 116Z" fill="#08080a"/>
+    <path d="M340 76V116" stroke="#1a1a1e" stroke-width="4"/>
+    <path d="M200 112C232 82 290 62 340 61C410 60 470 84 508 112" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2"/>
+    <path d="M40 150H660" stroke="#e8321e" stroke-width="3"/>
+    <circle cx="150" cy="172" r="46" fill="#08080a"/><circle cx="550" cy="172" r="46" fill="#08080a"/>
+    <g transform="translate(150 172)"><circle r="36" fill="#0d0d0f" stroke="#e8321e" stroke-width="4"/><g class="wheel" stroke="#9a9aa4" stroke-width="3" stroke-linecap="round"><path d="M0-26V26M22.5-13-22.5 13M22.5 13-22.5-13"/></g><circle r="6" fill="#d9a441"/></g>
+    <g transform="translate(550 172)"><circle r="36" fill="#0d0d0f" stroke="#e8321e" stroke-width="4"/><g class="wheel" stroke="#9a9aa4" stroke-width="3" stroke-linecap="round"><path d="M0-26V26M22.5-13-22.5 13M22.5 13-22.5-13"/></g><circle r="6" fill="#d9a441"/></g>
+    <path d="M646 140h26a4 4 0 0 1 4 4v6h-30Z" fill="#d9a441"/>
+    <rect x="24" y="142" width="16" height="10" rx="2" fill="#e8321e"/>
+    <path d="M0 208H700" stroke="#2d2d33" stroke-width="2"/>
+  </svg>
   <div class="wrap">
     <h1><span>Lucios.</span><span class="o">Protejat.</span><span>Apex.</span></h1>
     <p>Detailing auto făcut ca la carte și întreținere rapidă într-un singur loc. Îți lași mașina dimineața, o primești ca nouă seara.</p>
@@ -190,6 +214,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <p class="sub">Prețuri pentru mașini de clasă medie (sedan, hatchback, crossover). Pentru SUV mare sau dube adăugăm 15–25%, confirmat înainte de lucrare.</p>
     <div class="pk">
       <article class="pack">
+        <svg class="pi" viewBox="0 0 300 96" aria-hidden="true">
+          <rect width="300" height="96" rx="6" fill="#111114" stroke="#2d2d33"/>
+          <rect x="96" y="44" width="92" height="34" rx="9" fill="#d9a441"/>
+          <circle cx="116" cy="58" r="3.5" fill="#111114"/><circle cx="138" cy="66" r="3" fill="#111114"/><circle cx="160" cy="56" r="3.5" fill="#111114"/><circle cx="174" cy="68" r="2.5" fill="#111114"/>
+          <g fill="none" stroke="#ececef" stroke-opacity=".8" stroke-width="2"><circle cx="90" cy="30" r="10"/><circle cx="130" cy="20" r="7"/><circle cx="170" cy="28" r="12"/><circle cx="208" cy="40" r="7"/><circle cx="62" cy="52" r="6"/></g>
+          <path d="M236 60c-5 7-8 10-8 14a8 8 0 0 0 16 0c0-4-3-7-8-14Z" fill="#e8321e"/>
+        </svg>
         <h3>Essential Wash</h3>
         <p class="for">Pentru mașina folosită zilnic, care vrea să arate bine săptămână de săptămână.</p>
         <div class="amt"><b>149</b><span>lei · aprox. 1,5 ore</span></div>
@@ -204,6 +235,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       </article>
       <article class="pack hot">
         <span class="tag">Cel mai ales</span>
+        <svg class="pi" viewBox="0 0 300 96" aria-hidden="true">
+          <rect width="300" height="96" rx="6" fill="#111114" stroke="#2d2d33"/>
+          <path d="M150 12 112 26v22c0 20 15 33 38 40 23-7 38-20 38-40V26l-38-14Z" fill="#1d1210" stroke="#e8321e" stroke-width="3"/>
+          <path d="M133 50l12 12 22-24" fill="none" stroke="#d9a441" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M122 30 150 20" stroke="#fff" stroke-opacity=".45" stroke-width="2.5" stroke-linecap="round"/>
+          <g fill="#ececef" fill-opacity=".55"><circle cx="60" cy="40" r="4"/><circle cx="82" cy="58" r="3"/><circle cx="48" cy="66" r="2.5"/><circle cx="230" cy="38" r="3"/><circle cx="252" cy="58" r="4"/><circle cx="214" cy="66" r="2.5"/></g>
+        </svg>
         <h3>Ceramic Shield</h3>
         <p class="for">Vopsea corectată și protejată pe termen lung, cu luciu adânc și curățare ușoară.</p>
         <div class="amt"><b>1.490</b><span>lei · 2 zile</span></div>
@@ -217,6 +255,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <a class="btn btn-red" href="#programare" data-pack="Ceramic Shield">Alege Ceramic Shield</a>
       </article>
       <article class="pack">
+        <svg class="pi" viewBox="0 0 300 96" aria-hidden="true">
+          <rect width="300" height="96" rx="6" fill="#111114" stroke="#2d2d33"/>
+          <path d="M116 78 106 28a14 14 0 0 1 14-16h14a14 14 0 0 1 14 12l8 44Z" fill="#1d1d22" stroke="#9a9aa4" stroke-width="2.5"/>
+          <path d="M122 80h72a12 12 0 0 1 12 12H110a12 12 0 0 1 12-12Z" fill="#1d1d22" stroke="#9a9aa4" stroke-width="2.5"/>
+          <path d="M122 30 138 70" stroke="#d9a441" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/>
+          <circle cx="226" cy="40" r="22" fill="none" stroke="#e8321e" stroke-width="5"/><circle cx="226" cy="40" r="5" fill="#9a9aa4"/>
+          <path d="M226 45v14M222 38l-14 6M230 38l14 6" stroke="#9a9aa4" stroke-width="3" stroke-linecap="round"/>
+          <path d="M52 28l3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" fill="#d9a441"/>
+          <path d="M72 60l2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#ececef" fill-opacity=".7"/>
+        </svg>
         <h3>Full Interior Revival</h3>
         <p class="for">Pentru interioare obosite, cu pete, mirosuri sau piele uscată.</p>
         <div class="amt"><b>690</b><span>lei · aprox. 6 ore</span></div>
@@ -256,10 +304,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <p class="cap">Ilustrație demonstrativă a efectului unei corecții de vopsea urmate de protecție ceramică.</p>
       </div>
       <ol class="steps">
-        <li><div><h3>Inspecție</h3><p>Verificăm vopseaua la lumină specială și îți spunem ce se poate corecta, înainte de orice lucrare.</p></div></li>
-        <li><div><h3>Decontaminare</h3><p>Eliminăm fierul, smoala și murdăria incrustată, în siguranță pentru vopsea.</p></div></li>
-        <li><div><h3>Corecție și protecție</h3><p>Lustruim defectele fine, apoi aplicăm ceară sau strat ceramic, în funcție de pachet.</p></div></li>
-        <li><div><h3>Predare</h3><p>Verificăm împreună mașina la lumină și îți explicăm cum să o întreții ca să-și păstreze luciul.</p></div></li>
+        <li><div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><h3>Inspecție</h3><p>Verificăm vopseaua la lumină specială și îți spunem ce se poate corecta, înainte de orice lucrare.</p></div></li>
+        <li><div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg><h3>Decontaminare</h3><p>Eliminăm fierul, smoala și murdăria incrustată, în siguranță pentru vopsea.</p></div></li>
+        <li><div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><h3>Corecție și protecție</h3><p>Lustruim defectele fine, apoi aplicăm ceară sau strat ceramic, în funcție de pachet.</p></div></li>
+        <li><div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v4M21 12v3"/></svg><h3>Predare</h3><p>Verificăm împreună mașina la lumină și îți explicăm cum să o întreții ca să-și păstreze luciul.</p></div></li>
       </ol>
     </div>
   </div>

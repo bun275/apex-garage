@@ -204,6 +204,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<div class="prog" aria-hidden="true"></div>
 
 <header>
   <div class="wrap bar">
@@ -482,7 +483,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     el.style.setProperty('--d',(idx*st)+'s');
   });
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.intersectionRatio>=.15){
+        if(!e.target.classList.contains('in')){
+          e.target.style.setProperty('--ty',(window.__dir==='up'?'-34px':'34px'));
+          e.target.classList.add('in');
+        }
+      }else if(e.intersectionRatio===0){e.target.classList.remove('in');}
+    });},{threshold:[0,.15],rootMargin:'0px 0px -40px 0px'});
     els.forEach(function(el){io.observe(el)});
   }else{els.forEach(function(el){el.classList.add('in')});}
 
@@ -491,6 +499,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   function setV(v){rg.value=v;rg.dispatchEvent(new Event('input'));}
   ['pointerdown','keydown','touchstart'].forEach(function(ev){ba.addEventListener(ev,function(){stop=true},{passive:true});});
   function demo(){
+    return; /* înlocuit de animația legată de derulare */
     var pts=[[0,50],[900,92],[1900,8],[2800,50]],t0=null;
     function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;}
     function f(t){
@@ -505,6 +514,47 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     var bo=new IntersectionObserver(function(es){if(es[0].isIntersecting){bo.disconnect();setTimeout(demo,500);}},{threshold:.6});
     bo.observe(ba);
   }
+})();
+
+/* animații legate de poziția paginii: merg la fel în sus și în jos */
+(function(){
+  var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hero=document.querySelector('.hero'),prog=document.querySelector('.prog'),
+      steps=[].slice.call(document.querySelectorAll('.steps li')),
+      packs=[].slice.call(document.querySelectorAll('.pack')),
+      ba=document.getElementById('ba'),rg=document.getElementById('rg'),
+      lastY=window.pageYOffset,tick=false,user=false;
+  window.__dir='down';
+  ['pointerdown','keydown','touchstart'].forEach(function(ev){ba.addEventListener(ev,function(){user=true;},{passive:true});});
+  function clamp(x,a,b){return Math.max(a,Math.min(b,x));}
+  function frame(){
+    tick=false;
+    var y=window.pageYOffset,vh=window.innerHeight,max=document.documentElement.scrollHeight-vh;
+    prog.style.setProperty('--p',max>0?(y/max).toFixed(4):0);
+    if(rm)return;
+    if(y<vh*1.6)hero.style.setProperty('--sy',y);
+    steps.forEach(function(li){
+      var r=li.getBoundingClientRect(),c=r.top+r.height/2,d=Math.abs(c-vh*.5)/(vh*.5);
+      li.style.setProperty('--a',clamp(1-d*1.2,0,1).toFixed(3));
+    });
+    var sp=window.innerWidth<980?[8,8,8]:[18,44,18];
+    packs.forEach(function(p,i){
+      var r=p.getBoundingClientRect(),off=((r.top+r.height/2)-vh/2)/vh;
+      p.style.setProperty('--py',(off*sp[i%3]).toFixed(1));
+    });
+    if(!user){
+      var r=ba.getBoundingClientRect(),pr=clamp((vh-r.top)/(vh+r.height),0,1),s=clamp((pr-.3)/.4,0,1);
+      rg.value=92-84*s;rg.dispatchEvent(new Event('input'));
+    }
+  }
+  window.addEventListener('scroll',function(){
+    var y=window.pageYOffset;
+    if(y>lastY)window.__dir='down';else if(y<lastY)window.__dir='up';
+    lastY=y;
+    if(!tick){tick=true;requestAnimationFrame(frame);}
+  },{passive:true});
+  window.addEventListener('resize',function(){if(!tick){tick=true;requestAnimationFrame(frame);}});
+  frame();
 })();
 </script>
 </body>
